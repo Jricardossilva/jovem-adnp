@@ -29,10 +29,9 @@ services:
         # banco por dentro da rede do Docker (DB_HOST=mysql, DB_PORT=3306).
         # Isso evita conflito com qualquer MySQL já instalado na sua máquina.
         #
-        # Se um dia quiser acessar o banco por um cliente (DBeaver/Workbench)
-        # no Windows, descomente as 2 linhas abaixo e use a porta 3307:
-        # ports:
-        #     - '3307:3306'
+        # Acesso por cliente (DBeaver/Workbench) no Windows via porta 3307:
+        ports:
+            - '3307:3306'
         environment:
             MYSQL_ROOT_PASSWORD: '${DB_PASSWORD:-password}'
             MYSQL_ROOT_HOST: '%'
