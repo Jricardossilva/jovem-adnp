@@ -22,3 +22,5 @@ yarn-error.log
 /.zed
 .DS_Store
 /storage/logs/*.log
+.phpunit.result.cache
+.phpunit.cache
