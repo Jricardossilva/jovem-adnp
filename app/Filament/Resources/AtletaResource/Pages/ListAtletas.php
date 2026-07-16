@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\AtletaResource\Pages;
 
 use App\Enums\SituacaoCadastro;
+use App\Enums\StatusAtleta;
 use App\Filament\Resources\AtletaResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Components\Tab;
@@ -23,14 +24,14 @@ class ListAtletas extends ListRecords
         return [
             'todos' => Tab::make('Todos'),
             'pendentes' => Tab::make('Pendentes')
-                ->modifyQueryUsing(fn (Builder $q) => $q->where('situacao_cadastro', SituacaoCadastro::Pendente->value))
+                ->modifyQueryUsing(fn (Builder $query) => $query->where('situacao_cadastro', SituacaoCadastro::Pendente->value))
                 ->badge(\App\Models\Atleta::pendentes()->count()),
             'ativos' => Tab::make('Ativos')
-                ->modifyQueryUsing(fn (Builder $q) => $q->where('status', 'ativo')),
+                ->modifyQueryUsing(fn (Builder $query) => $query->where('status', StatusAtleta::Ativo->value)),
             'inativos' => Tab::make('Inativos')
-                ->modifyQueryUsing(fn (Builder $q) => $q->where('status', 'inativo')),
+                ->modifyQueryUsing(fn (Builder $query) => $query->where('status', StatusAtleta::Inativo->value)),
             'suspensos' => Tab::make('Suspensos')
-                ->modifyQueryUsing(fn (Builder $q) => $q->where('status', 'suspenso')),
+                ->modifyQueryUsing(fn (Builder $query) => $query->where('status', StatusAtleta::Suspenso->value)),
         ];
     }
 }
